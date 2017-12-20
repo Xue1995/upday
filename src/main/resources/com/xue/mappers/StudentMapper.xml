@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xue.Common.Dao.StudentDao">
+	
+	<resultMap type="com.xue.Common.Entity.Student" id="Student">
+	<id column="xid" property="xid" javaType="String" jdbcType="VARCHAR"></id>
+	<result column="xname" property="xname" javaType="String" jdbcType="VARCHAR"></result>
+	<result column="xsex" property="xsex" javaType="String" jdbcType="VARCHAR"></result>
+	<result column="xage" property="xage" javaType="String" jdbcType="VARCHAR"></result>
+	<result column="xmoney" property="xmoney" javaType="String" jdbcType="VARCHAR"></result>
+	<result column="xstatus" property="xstatus" javaType="String" jdbcType="VARCHAR"></result>
+	<result column="fromadd" property="fromadd" javaType="String" jdbcType="VARCHAR"></result>
+	
+	</resultMap>
+	
+
+	<!-- 全查询 -->
+	<select id="query" resultType="com.xue.Common.Entity.Student">
+		select * from tstudent
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="listpage" resultType="com.xue.Common.Entity.Student" parameterType="com.xue.Common.Entity.Student">
+		
+		 <![CDATA[
+            ${value} 
+          ]]>
+	</select>
+	
+    <!-- 学员添加 -->
+    <insert id="add" parameterType="com.xue.Common.Entity.Student">
+        insert into tstudent values(#{xid},#{xname},#{xsex},#{xage},#{xmoney},#{xstatus},#{fromadd})
+    </insert>
+    <!-- 学员删除 -->
+    <delete id="delete" parameterType="com.xue.Common.Entity.Student">
+	delete from tstudent where XID=#{xid}
+	</delete>
+	<!-- 学员添加 -->
+    <update id="update" parameterType="com.xue.Common.Entity.Student">
+        update tstudent set xname=#{xname},xsex=#{xsex},xage=#{xage},xmoney=#{xmoney},xstatus=#{xstatus},fromadd=#{fromadd} where xid=#{xid}
+    </update>
+</mapper>
